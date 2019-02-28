@@ -1,0 +1,12 @@
+.idea
+.metadata
+.tempFiles
+RemoteSystemTempFiles
+cli_mesh/.idea
+cli_mesh/.launches
+cli_mesh/.settings
+libmbedcrypto_CC26X2R1_LAUNCHXL_ccs
+libopenthread_cli_ftd_CC26X2R1_LAUNCHXL_ccs
+libopenthread_diag_ftd_CC26X2R1_LAUNCHXL_ccs
+libopenthread_ftd_CC26X2R1_LAUNCHXL_ccs
+libopenthread_platform_utils_ftd_CC26X2R1_LAUNCHXL_ccs
