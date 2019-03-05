@@ -50,6 +50,7 @@
 /* Standard Library Header files */
 #include <assert.h>
 #include <stddef.h>
+#include <string.h>
 
 /* POSIX Header files */
 #include <sched.h>
@@ -62,6 +63,7 @@
 /* OpenThread public API Header files */
 #include <openthread/cli.h>
 #include <openthread/instance.h>
+#include <openthread/icmp6.h>
 
 /* OpenThread Internal/Example Header files */
 #include "otsupport/otrtosapi.h"
@@ -76,6 +78,9 @@ void *cli_task(void *arg0);
 
 /* Application thread call stack */
 static char cli_stack[TASK_CONFIG_CLI_TASK_STACK_SIZE];
+
+/* ICMPv6 Handler struct registered with OpenThread. */
+static otIcmp6Handler cli_icmpHandler;
 
 /**
  * Documented in task_config.h.
@@ -111,6 +116,24 @@ void cli_taskCreate(void)
 
     GPIO_setConfig(Board_GPIO_RLED, GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_HIGH |
                                     GPIO_CFG_OUT_LOW);
+}
+
+/**
+ * Handler for ICMPv6 messages.
+ */
+void cli_icmp6RxCallback(void *aContext, otMessage *aMessage, const otMessageInfo *aMessageInfo,
+                         const otIcmp6Header *aIcmpHeader)
+{
+    (void)aContext;
+    (void)aMessage;
+    (void)aMessageInfo;
+
+    if (OT_ICMP6_TYPE_ECHO_REQUEST == aIcmpHeader->mType)
+    {
+        GPIO_toggle(Board_GPIO_GLED);
+        sleep(2);
+        GPIO_toggle(Board_GPIO_GLED);
+    }
 }
 
 /**
