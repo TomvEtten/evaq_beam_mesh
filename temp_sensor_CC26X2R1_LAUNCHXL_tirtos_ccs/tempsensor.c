@@ -58,6 +58,8 @@
 
 /* POSIX Header files */
 #include <time.h>
+#include <unistd.h>
+
 
 /* OpenThread public API Header files */
 #include <openthread/coap.h>
@@ -66,6 +68,8 @@
 #include <openthread/platform/logging.h>
 #include <openthread/platform/uart.h>
 #include <openthread/thread.h>
+#include <openthread/icmp6.h>
+
 
 /* TIRTOS specific header files */
 #include <ti/sysbios/knl/Event.h>
@@ -74,6 +78,7 @@
 /* driverlib specific header */
 #include <ti/devices/DeviceFamily.h>
 #include DeviceFamily_constructPath(driverlib/aon_batmon.h)
+#include <ti/drivers/GPIO.h>
 
 /* POSIX Header files */
 #include <sched.h>
@@ -119,6 +124,7 @@
 /* Address to report temperature */
 #ifndef TIOP_TEMPSENSOR_REPORTING_ADDRESS
 #define TIOP_TEMPSENSOR_REPORTING_ADDRESS  "ff02::1"
+#define TIOP_OWN_REPORTING_ADDRESS "64:ff9b::8e5d:886d"
 #endif
 
 #define DEFAULT_COAP_HEADER_TOKEN_LEN      2
@@ -168,6 +174,9 @@ const attrDesc_t coapAttr = {
     attrTemperature,
 };
 
+/* ping handler statics */
+static otIcmp6Handler cli_icmpHandler;
+
 /* Holds the server setup state: 1 indicates CoAP server has been setup */
 static bool serverSetup;
 
@@ -198,6 +207,25 @@ static void configureReportingTimer(void)
     };
 
     timer_create(CLOCK_MONOTONIC, &event, &reportTimerID);
+}
+
+/**
+* Handler for ICMPv6 messages.
+*/
+void cli_icmp6RxCallback(void *aContext, otMessage *aMessage, const otMessageInfo *aMessageInfo,
+                        const otIcmp6Header *aIcmpHeader)
+{
+   (void)aContext;
+   (void)aMessage;
+   (void)aMessageInfo;
+
+   if (OT_ICMP6_TYPE_ECHO_REQUEST == aIcmpHeader->mType)
+   {
+       GPIO_toggle(Board_GPIO_GLED);
+       sleep(1);
+       GPIO_toggle(Board_GPIO_GLED);
+
+   }
 }
 
 /**
@@ -309,6 +337,58 @@ static void tempSensorReport(void)
     startReportingTimer(TIOP_TEMPSENSOR_REPORTING_INTERVAL);
     exit:
 
+    if(error != OT_ERROR_NONE && requestMessage != NULL)
+    {
+        OtRtosApi_lock();
+        otMessageFree(requestMessage);
+        OtRtosApi_unlock();
+    }
+}
+
+static void sendMessage(void) {
+
+
+    otError error = OT_ERROR_NONE;
+    otMessage *requestMessage = NULL;
+    otMessageInfo messageInfo;
+    otCoapHeader requestHeader;
+    otInstance *instance = OtInstance_get();
+
+    /* print the reported value to the terminal */
+    DISPUTILS_SERIALPRINTF(0, 0, "Attempting to send coap:");
+
+    OtRtosApi_lock();
+    otCoapHeaderInit(&requestHeader, OT_COAP_TYPE_NON_CONFIRMABLE, OT_COAP_CODE_POST);
+    otCoapHeaderGenerateToken(&requestHeader, DEFAULT_COAP_HEADER_TOKEN_LEN);
+    error = otCoapHeaderAppendUriPathOptions(&requestHeader,
+                                             THERMOSTAT_TEMP_URI);
+    OtRtosApi_unlock();
+    otEXPECT(OT_ERROR_NONE == error);
+
+    OtRtosApi_lock();
+    otCoapHeaderSetPayloadMarker(&requestHeader);
+    requestMessage = otCoapNewMessage(instance, &requestHeader);
+    OtRtosApi_unlock();
+    otEXPECT_ACTION(requestMessage != NULL, error = OT_ERROR_NO_BUFS);
+
+    OtRtosApi_lock();
+    error = otMessageAppend(requestMessage, attrTemperature,
+                            strlen((const char*) attrTemperature));
+    OtRtosApi_unlock();
+    otEXPECT(OT_ERROR_NONE == error);
+
+    memset(&messageInfo, 0, sizeof(messageInfo));
+    otIp6AddressFromString(TIOP_OWN_REPORTING_ADDRESS, &messageInfo.mPeerAddr);
+    messageInfo.mInterfaceId = OT_NETIF_INTERFACE_ID_THREAD;
+
+    OtRtosApi_lock();
+    error = otCoapSendRequest(instance, requestMessage, &messageInfo, NULL, NULL);
+    OtRtosApi_unlock();
+
+    /* print the reported value to the terminal */
+       DISPUTILS_SERIALPRINTF(0, 0, "Message Send!");
+
+    exit:
     if(error != OT_ERROR_NONE && requestMessage != NULL)
     {
         OtRtosApi_lock();
@@ -439,6 +519,10 @@ static void processKeyChangeCB(uint8_t keysPressed)
     {
         TempSensor_postEvt(TempSensor_evtKeyRight);
     }
+
+   if (keysPressed & KEYS_LEFT) {
+       TempSensor_postEvt(TempSensor_evtKeyLeft);
+   }
 }
 
 /**
@@ -486,15 +570,8 @@ static int processEvents(void)
                              (TempSensor_evtReportTemp | TempSensor_evtNwkSetup |
                               TempSensor_evtAddressValid | TempSensor_evtKeyRight |
                               TempSensor_evtNwkJoined | TempSensor_evtNwkJoinFailure |
-                              TempSensor_evtNotifyGlobalAddress),
+                              TempSensor_evtNotifyGlobalAddress | TempSensor_evtKeyLeft),
                              BIOS_WAIT_FOREVER);
-
-    if(events & TempSensor_evtReportTemp)
-    {
-        /* perform activity related to the report event. */
-        DISPUTILS_SERIALPRINTF( 0, 0, "Report Event received");
-        tempSensorReport();
-    }
 
     if(events & TempSensor_evtNwkSetup)
     {
@@ -508,6 +585,11 @@ static int processEvents(void)
             startReportingTimer(TIOP_TEMPSENSOR_REPORTING_INTERVAL);
 #endif
         }
+    }
+
+    if (events & TempSensor_evtKeyLeft) {
+        sendMessage();
+        DISPUTILS_SERIALPRINTF(1, 0, "Left key has been pressed!!");
     }
 
     if (events & TempSensor_evtKeyRight)
@@ -638,6 +720,8 @@ void TempSensor_taskCreate(void)
     retc = pthread_attr_destroy(&pAttrs);
     assert(retc == 0);
     (void)retc;
+    GPIO_setConfig(Board_GPIO_RLED, GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_HIGH |
+                                       GPIO_CFG_OUT_LOW);
 }
 
 
@@ -651,6 +735,7 @@ void *TempSensor_task(void *arg0)
     bool commissioned;
 #endif /* !TIOP_CONFIG_SET_NW_ID */
 
+    otInstance *instance;
     initEvent();
 
     KeysUtils_initialize(processKeyChangeCB);
@@ -662,6 +747,8 @@ void *TempSensor_task(void *arg0)
     AONBatMonEnable();
 
     resetPriority();
+
+    instance = OtInstance_get();
 
     /* Set the poll period, as NVS does not store poll period */
     OtRtosApi_lock();
@@ -698,6 +785,13 @@ void *TempSensor_task(void *arg0)
     OtRtosApi_unlock();
 
     configureReportingTimer();
+
+    memset(&cli_icmpHandler, sizeof(cli_icmpHandler), 0U);
+       cli_icmpHandler.mReceiveCallback = cli_icmp6RxCallback;
+
+       OtRtosApi_lock();
+       otIcmp6RegisterHandler(instance, &cli_icmpHandler);
+       OtRtosApi_unlock();
 
     /* process events */
     while (true)

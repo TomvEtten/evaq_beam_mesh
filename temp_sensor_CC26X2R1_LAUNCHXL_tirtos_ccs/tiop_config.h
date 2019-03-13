@@ -74,7 +74,7 @@
  * IEEE 802.15.4 channel
  */
 #ifndef TIOP_CONFIG_LINK_CHANNEL
-#define TIOP_CONFIG_LINK_CHANNEL   14
+#define TIOP_CONFIG_LINK_CHANNEL   15
 #endif
 
 /**
@@ -114,14 +114,14 @@
  * IEEE 802.15.4 PAN ID
  */
 #ifndef TIOP_CONFIG_PAN_ID
-#define TIOP_CONFIG_PAN_ID         0xFFFF
+#define TIOP_CONFIG_PAN_ID         0x1234
 #endif
 
 /*
  * Thread Extended PAN ID
  */
 #ifndef TIOP_CONFIG_EXT_PAN_ID
-#define TIOP_CONFIG_EXT_PAN_ID     0x0123456789ABCDEF
+#define TIOP_CONFIG_EXT_PAN_ID     0x1111111122222222
 #endif
 
 /*
@@ -131,13 +131,13 @@
 #define TIOP_CONFIG_MASTER_KEY_U   0x0011223344556677
 #endif
 #ifndef TIOP_CONFIG_MASTER_KEY_L
-#define TIOP_CONFIG_MASTER_KEY_L   0x8899AABBCCDDEEFF
+#define TIOP_CONFIG_MASTER_KEY_L   0x8899aabbccddeeff
 #endif
 
 /*
  * Network Name
  */
-#define TIOP_CONFIG_NETWORK_NAME   "TI-OpenThread"
+#define TIOP_CONFIG_NETWORK_NAME   "OpenThreadDemo"
 
 /*
  * @brief Wrapper function around otJoinerStart for joining the network with the
