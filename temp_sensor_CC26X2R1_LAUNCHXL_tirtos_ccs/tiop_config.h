@@ -81,7 +81,7 @@
  * Pre-Shared Key (PSKd) for joiner devices
  */
 #ifndef TIOP_CONFIG_PSKD
-#define TIOP_CONFIG_PSKD           "TMPSENS1"
+#define TIOP_CONFIG_PSKD           "EVAQ-BEAM"
 #endif
 
 /*
@@ -137,7 +137,7 @@
 /*
  * Network Name
  */
-#define TIOP_CONFIG_NETWORK_NAME   "OpenThreadDemo"
+#define TIOP_CONFIG_NETWORK_NAME   "EVAQ-BEAM"
 
 /*
  * @brief Wrapper function around otJoinerStart for joining the network with the

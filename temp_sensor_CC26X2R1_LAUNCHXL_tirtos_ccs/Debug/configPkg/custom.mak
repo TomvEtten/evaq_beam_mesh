@@ -7,5 +7,5 @@
 #       or equal to the generated config header
 #
 linker.cmd: package/cfg/release_pem4f.xdl
-	$(SED) 's"^\"\(package/cfg/release_pem4fcfg.cmd\)\"$""\"/Users/rick/workspace_v8/temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs/Debug/configPkg/\1\""' package/cfg/release_pem4f.xdl > $@
+	$(SED) 's"^\"\(package/cfg/release_pem4fcfg.cmd\)\"$""\"/home/tomvanetten/Documents/Workspace/evaq_beam_mesh/temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs/Debug/configPkg/\1\""' package/cfg/release_pem4f.xdl > $@
 	-$(SETDATE) -r:max package/cfg/release_pem4f.h compiler.opt compiler.opt.defs
