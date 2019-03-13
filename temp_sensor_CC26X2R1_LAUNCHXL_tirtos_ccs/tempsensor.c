@@ -17,15 +17,15 @@
  are met:
 
  *  Redistributions of source code must retain the above copyright
- notice, this list of conditions and the following disclaimer.
+    notice, this list of conditions and the following disclaimer.
 
  *  Redistributions in binary form must reproduce the above copyright
- notice, this list of conditions and the following disclaimer in the
- documentation and/or other materials provided with the distribution.
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
 
  *  Neither the name of Texas Instruments Incorporated nor the names of
- its contributors may be used to endorse or promote products derived
- from this software without specific prior written permission.
+    its contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
 
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -60,6 +60,7 @@
 #include <time.h>
 #include <unistd.h>
 
+
 /* OpenThread public API Header files */
 #include <openthread/coap.h>
 #include <openthread/ip6.h>
@@ -68,6 +69,7 @@
 #include <openthread/platform/uart.h>
 #include <openthread/thread.h>
 #include <openthread/icmp6.h>
+
 
 /* TIRTOS specific header files */
 #include <ti/sysbios/knl/Event.h>
@@ -130,11 +132,11 @@
 /* coap attribute descriptor */
 typedef struct
 {
-    const char* uriPath; /* attribute URI */
-    uint16_t type; /* type of resource: read only or read write */
-    uint8_t* pValue; /* pointer to value of attribute state */
+    const char*    uriPath; /* attribute URI */
+    uint16_t       type;    /* type of resource: read only or read write */
+    uint8_t*       pValue;  /* pointer to value of attribute state */
 
-}attrDesc_t;
+} attrDesc_t;
 
 /******************************************************************************
  Local variables
@@ -167,8 +169,10 @@ static int temperatureValue = 70;
 
 /* coap attribute descriptor for the application */
 const attrDesc_t coapAttr = {
-TEMPSENSOR_TEMP_URI,
-                              (ATTR_READ | ATTR_REPORT), attrTemperature, };
+    TEMPSENSOR_TEMP_URI,
+    (ATTR_READ|ATTR_REPORT),
+    attrTemperature,
+};
 
 /* ping handler statics */
 static otIcmp6Handler cli_icmpHandler;
@@ -196,30 +200,32 @@ static void reportingTimeoutCB(union sigval val);
  */
 static void configureReportingTimer(void)
 {
-    struct sigevent event = { .sigev_notify_function = reportingTimeoutCB,
-                              .sigev_notify = SIGEV_SIGNAL, };
+    struct sigevent event =
+    {
+        .sigev_notify_function = reportingTimeoutCB,
+        .sigev_notify          = SIGEV_SIGNAL,
+    };
 
     timer_create(CLOCK_MONOTONIC, &event, &reportTimerID);
 }
 
 /**
- * Handler for ICMPv6 messages.
- */
-void cli_icmp6RxCallback(void *aContext, otMessage *aMessage,
-                         const otMessageInfo *aMessageInfo,
-                         const otIcmp6Header *aIcmpHeader)
+* Handler for ICMPv6 messages.
+*/
+void cli_icmp6RxCallback(void *aContext, otMessage *aMessage, const otMessageInfo *aMessageInfo,
+                        const otIcmp6Header *aIcmpHeader)
 {
-    (void) aContext;
-    (void) aMessage;
-    (void) aMessageInfo;
+   (void)aContext;
+   (void)aMessage;
+   (void)aMessageInfo;
 
-    if (OT_ICMP6_TYPE_ECHO_REQUEST == aIcmpHeader->mType)
-    {
-        GPIO_toggle(Board_GPIO_GLED);
-        sleep(1);
-        GPIO_toggle(Board_GPIO_GLED);
+   if (OT_ICMP6_TYPE_ECHO_REQUEST == aIcmpHeader->mType)
+   {
+       GPIO_toggle(Board_GPIO_GLED);
+       sleep(1);
+       GPIO_toggle(Board_GPIO_GLED);
 
-    }
+   }
 }
 
 /**
@@ -232,11 +238,11 @@ void cli_icmp6RxCallback(void *aContext, otMessage *aMessage,
  */
 static void startReportingTimer(uint32_t timeout)
 {
-    struct itimerspec newTime = { 0 };
-    struct itimerspec zeroTime = { 0 };
+    struct itimerspec newTime  = {0};
+    struct itimerspec zeroTime = {0};
     struct itimerspec currTime;
 
-    newTime.it_value.tv_sec = (timeout / 1000U);
+    newTime.it_value.tv_sec  = (timeout / 1000U);
     newTime.it_value.tv_nsec = ((timeout % 1000U) * 1000000U);
 
     /* Disarm timer if currently armed */
@@ -280,28 +286,28 @@ static void tempSensorReport(void)
     int32_t celsiusTemp;
 
     /* make sure there is a new temperature reading otherwise just report the previous temperature */
-    if (AONBatMonNewTempMeasureReady())
+    if(AONBatMonNewTempMeasureReady())
     {
         /* Read the temperature in degrees C from the internal temp sensor */
         celsiusTemp = AONBatMonTemperatureGetDegC();
 
         /* convert temp to Fahrenheit */
-        temperatureValue = (int) ((celsiusTemp * 9) / 5) + 32;
+        temperatureValue = (int)((celsiusTemp * 9) / 5) + 32;
         /* convert temperature to string attribute */
-        snprintf((char*) attrTemperature, sizeof(attrTemperature), "%d",
+        snprintf((char*)attrTemperature, sizeof(attrTemperature), "%d",
                  temperatureValue);
     }
 
     /* print the reported value to the terminal */
-    DISPUTILS_SERIALPRINTF(0, 0, "Reporting Starts:");
-    DISPUTILS_SERIALPRINTF(0, 0, (char* )attrTemperature);
+    DISPUTILS_SERIALPRINTF(0, 0, "Reporting Temperature:");
+    DISPUTILS_SERIALPRINTF(0, 0, (char*)attrTemperature);
+
 
     OtRtosApi_lock();
-    otCoapHeaderInit(&requestHeader, OT_COAP_TYPE_NON_CONFIRMABLE,
-                     OT_COAP_CODE_POST);
+    otCoapHeaderInit(&requestHeader, OT_COAP_TYPE_NON_CONFIRMABLE, OT_COAP_CODE_POST);
     otCoapHeaderGenerateToken(&requestHeader, DEFAULT_COAP_HEADER_TOKEN_LEN);
     error = otCoapHeaderAppendUriPathOptions(&requestHeader,
-    THERMOSTAT_TEMP_URI);
+                                             THERMOSTAT_TEMP_URI);
     OtRtosApi_unlock();
     otEXPECT(OT_ERROR_NONE == error);
 
@@ -324,14 +330,14 @@ static void tempSensorReport(void)
 
     OtRtosApi_lock();
     error = otCoapSendRequest(instance, requestMessage, &messageInfo, NULL,
-    NULL);
+                              NULL);
     OtRtosApi_unlock();
 
     /* Restart the clock */
     startReportingTimer(TIOP_TEMPSENSOR_REPORTING_INTERVAL);
     exit:
 
-    if (error != OT_ERROR_NONE && requestMessage != NULL)
+    if(error != OT_ERROR_NONE && requestMessage != NULL)
     {
         OtRtosApi_lock();
         otMessageFree(requestMessage);
@@ -339,8 +345,8 @@ static void tempSensorReport(void)
     }
 }
 
-static void sendMessage(void)
-{
+static void sendMessage(void) {
+
 
     otError error = OT_ERROR_NONE;
     otMessage *requestMessage = NULL;
@@ -352,11 +358,10 @@ static void sendMessage(void)
     DISPUTILS_SERIALPRINTF(0, 0, "Attempting to send coap:");
 
     OtRtosApi_lock();
-    otCoapHeaderInit(&requestHeader, OT_COAP_TYPE_NON_CONFIRMABLE,
-                     OT_COAP_CODE_POST);
+    otCoapHeaderInit(&requestHeader, OT_COAP_TYPE_NON_CONFIRMABLE, OT_COAP_CODE_POST);
     otCoapHeaderGenerateToken(&requestHeader, DEFAULT_COAP_HEADER_TOKEN_LEN);
     error = otCoapHeaderAppendUriPathOptions(&requestHeader,
-    THERMOSTAT_TEMP_URI);
+                                             THERMOSTAT_TEMP_URI);
     OtRtosApi_unlock();
     otEXPECT(OT_ERROR_NONE == error);
 
@@ -377,16 +382,18 @@ static void sendMessage(void)
     messageInfo.mInterfaceId = OT_NETIF_INTERFACE_ID_THREAD;
 
     OtRtosApi_lock();
-    error = otCoapSendRequest(instance, requestMessage, &messageInfo, NULL,
-                              NULL);
+    error = otCoapSendRequest(instance, requestMessage, &messageInfo, NULL, NULL);
     OtRtosApi_unlock();
 
-    exit: if (error != OT_ERROR_NONE && requestMessage != NULL)
+    /* print the reported value to the terminal */
+       DISPUTILS_SERIALPRINTF(0, 0, "Message Send!");
+
+    exit:
+    if(error != OT_ERROR_NONE && requestMessage != NULL)
     {
         OtRtosApi_lock();
         otMessageFree(requestMessage);
         OtRtosApi_unlock();
-        DISPUTILS_SERIALPRINTF(0, 0, "Message Send!");
     }
 }
 
@@ -411,17 +418,16 @@ static void coapHandleServer(void *aContext, otCoapHeader *aHeader,
     otCoapCode responseCode = OT_COAP_CODE_CHANGED;
     otCoapCode messageCode = otCoapHeaderGetCode(aHeader);
 
-    otCoapHeaderInit(&responseHeader, OT_COAP_TYPE_ACKNOWLEDGMENT,
-                     responseCode);
+    otCoapHeaderInit(&responseHeader, OT_COAP_TYPE_ACKNOWLEDGMENT, responseCode);
     otCoapHeaderSetMessageId(&responseHeader,
                              otCoapHeaderGetMessageId(aHeader));
     otCoapHeaderSetToken(&responseHeader, otCoapHeaderGetToken(aHeader),
                          otCoapHeaderGetTokenLength(aHeader));
     otCoapHeaderSetPayloadMarker(&responseHeader);
 
-    if (OT_COAP_CODE_GET == messageCode)
+    if(OT_COAP_CODE_GET == messageCode)
     {
-        responseMessage = otCoapNewMessage((otInstance*) aContext,
+        responseMessage = otCoapNewMessage((otInstance*)aContext,
                                            &responseHeader);
 
         otEXPECT_ACTION(responseMessage != NULL, error = OT_ERROR_NO_BUFS);
@@ -429,14 +435,14 @@ static void coapHandleServer(void *aContext, otCoapHeader *aHeader,
                                 strlen((const char*) attrTemperature));
         otEXPECT(OT_ERROR_NONE == error);
 
-        error = otCoapSendResponse((otInstance*) aContext, responseMessage,
+        error = otCoapSendResponse((otInstance*)aContext, responseMessage,
                                    aMessageInfo);
         otEXPECT(OT_ERROR_NONE == error);
     }
 
-    exit:
+exit:
 
-    if (error != OT_ERROR_NONE && responseMessage != NULL)
+    if(error != OT_ERROR_NONE && responseMessage != NULL)
     {
         otMessageFree(responseMessage);
     }
@@ -459,10 +465,10 @@ static otError setupCoapServer(otInstance *aInstance, const attrDesc_t *attr)
     OtRtosApi_unlock();
     otEXPECT(OT_ERROR_NONE == error);
 
-    if (attr->type & (ATTR_READ | ATTR_WRITE))
+    if(attr->type & (ATTR_READ | ATTR_WRITE))
     {
         coapResource.mHandler = &coapHandleServer;
-        coapResource.mUriPath = (const char*) attr->uriPath;
+        coapResource.mUriPath = (const char*)attr->uriPath;
         coapResource.mContext = aInstance;
 
         OtRtosApi_lock();
@@ -471,7 +477,8 @@ static otError setupCoapServer(otInstance *aInstance, const attrDesc_t *attr)
         otEXPECT(OT_ERROR_NONE == error);
     }
 
-    exit: return error;
+exit:
+    return error;
 }
 
 /**
@@ -484,8 +491,8 @@ static otError setupCoapServer(otInstance *aInstance, const attrDesc_t *attr)
 static void setReportingAddress(void)
 {
     thermostatAddress = globalAddress;
-    thermostatAddress.mFields.m8[OT_IP6_ADDRESS_SIZE - 1] =
-            THERMOSTAT_ADDRESS_LSB;
+    thermostatAddress.mFields.m8[OT_IP6_ADDRESS_SIZE - 1]
+        = THERMOSTAT_ADDRESS_LSB;
     Event_post(Event_handle(&tempSensorEvents), TempSensor_evtAddressValid);
 }
 
@@ -513,10 +520,9 @@ static void processKeyChangeCB(uint8_t keysPressed)
         TempSensor_postEvt(TempSensor_evtKeyRight);
     }
 
-    if (keysPressed & KEYS_LEFT)
-    {
-        TempSensor_postEvt(TempSensor_evtKeyLeft);
-    }
+   if (keysPressed & KEYS_LEFT) {
+       TempSensor_postEvt(TempSensor_evtKeyLeft);
+   }
 }
 
 /**
@@ -560,24 +566,19 @@ static void processOtStackEvents(uint8_t event, void *aContext)
  */
 static int processEvents(void)
 {
-    UInt events =
-            Event_pend(
-                    Event_handle(&tempSensorEvents),
-                    Event_Id_NONE,
-                    (TempSensor_evtReportTemp | TempSensor_evtNwkSetup
-                            | TempSensor_evtAddressValid
-                            | TempSensor_evtKeyRight | TempSensor_evtNwkJoined
-                            | TempSensor_evtNwkJoinFailure
-                            | TempSensor_evtNotifyGlobalAddress
-                            | TempSensor_evtKeyLeft),
-                    BIOS_WAIT_FOREVER);
+    UInt events = Event_pend(Event_handle(&tempSensorEvents), Event_Id_NONE,
+                             (TempSensor_evtReportTemp | TempSensor_evtNwkSetup |
+                              TempSensor_evtAddressValid | TempSensor_evtKeyRight |
+                              TempSensor_evtNwkJoined | TempSensor_evtNwkJoinFailure |
+                              TempSensor_evtNotifyGlobalAddress | TempSensor_evtKeyLeft),
+                             BIOS_WAIT_FOREVER);
 
-    if (events & TempSensor_evtNwkSetup)
+    if(events & TempSensor_evtNwkSetup)
     {
         if (false == serverSetup)
         {
             serverSetup = true;
-            (void) setupCoapServer(OtInstance_get(), &coapAttr);
+            (void)setupCoapServer(OtInstance_get(), &coapAttr);
 
             DISPUTILS_SERIALPRINTF(1, 0, "CoAP server setup done");
 #ifdef TIOP_POWER_DATA_ACK
@@ -586,16 +587,15 @@ static int processEvents(void)
         }
     }
 
-    if (events & TempSensor_evtKeyLeft)
-    {
+    if (events & TempSensor_evtKeyLeft) {
         sendMessage();
         DISPUTILS_SERIALPRINTF(1, 0, "Left key has been pressed!!");
     }
 
     if (events & TempSensor_evtKeyRight)
     {
-        if ((!otDatasetIsCommissioned(OtInstance_get()))
-                && (OtStack_joinState() != OT_STACK_EVENT_NWK_JOIN_IN_PROGRESS))
+        if ((!otDatasetIsCommissioned(OtInstance_get())) &&
+            (OtStack_joinState() != OT_STACK_EVENT_NWK_JOIN_IN_PROGRESS))
         {
             DISPUTILS_SERIALPRINTF(1, 0, "Joining Nwk ...");
             OtStack_joinConfiguredNetwork();
@@ -604,8 +604,8 @@ static int processEvents(void)
 
     if (events & TempSensor_evtNwkJoined)
     {
-        DISPUTILS_SERIALPRINTF(1, 0, "Joined Nwk");
-        (void) OtStack_setupNetwork();
+        DISPUTILS_SERIALPRINTF( 1, 0, "Joined Nwk");
+        (void)OtStack_setupNetwork();
     }
 
     if (events & TempSensor_evtNwkJoinFailure)
@@ -613,12 +613,12 @@ static int processEvents(void)
         DISPUTILS_SERIALPRINTF(1, 0, "Join Failure");
     }
 
-    if (events & TempSensor_evtAddressValid)
+    if(events & TempSensor_evtAddressValid)
     {
         startReportingTimer(TIOP_TEMPSENSOR_REPORTING_INTERVAL);
     }
 
-    if (events & TempSensor_evtNotifyGlobalAddress)
+    if(events & TempSensor_evtNotifyGlobalAddress)
     {
         setReportingAddress();
     }
@@ -630,10 +630,10 @@ static int processEvents(void)
  */
 static void resetPriority(void)
 {
-    pthread_t self;
-    int policy;
-    struct sched_param param;
-    int ret;
+    pthread_t           self;
+    int                 policy;
+    struct sched_param  param;
+    int                 ret;
 
     self = pthread_self();
 
@@ -644,7 +644,7 @@ static void resetPriority(void)
 
     ret = pthread_setschedparam(self, policy, &param);
     assert(ret == 0);
-    (void) ret;
+    (void)ret;
 }
 
 /******************************************************************************
@@ -669,8 +669,8 @@ void otPlatLog(otLogLevel aLogLevel, otLogRegion aLogRegion, const char *aFormat
  */
 void otPlatUartReceived(const uint8_t *aBuf, uint16_t aBufLength)
 {
-    (void) aBuf;
-    (void) aBufLength;
+    (void)aBuf;
+    (void)aBufLength;
     /* Do nothing. */
 }
 
@@ -695,10 +695,10 @@ void TempSensor_postEvt(TempSensor_evt event)
  */
 void TempSensor_taskCreate(void)
 {
-    pthread_t thread;
-    pthread_attr_t pAttrs;
-    struct sched_param priParam;
-    int retc;
+    pthread_t           thread;
+    pthread_attr_t      pAttrs;
+    struct sched_param  priParam;
+    int                 retc;
 
     retc = pthread_attr_init(&pAttrs);
     assert(retc == 0);
@@ -710,8 +710,8 @@ void TempSensor_taskCreate(void)
     retc = pthread_attr_setschedparam(&pAttrs, &priParam);
     assert(retc == 0);
 
-    retc = pthread_attr_setstack(&pAttrs, (void *) stack,
-    TASK_CONFIG_TEMPSENSOR_TASK_STACK_SIZE);
+    retc = pthread_attr_setstack(&pAttrs, (void *)stack,
+                                 TASK_CONFIG_TEMPSENSOR_TASK_STACK_SIZE);
     assert(retc == 0);
 
     retc = pthread_create(&thread, &pAttrs, TempSensor_task, NULL);
@@ -719,10 +719,11 @@ void TempSensor_taskCreate(void)
 
     retc = pthread_attr_destroy(&pAttrs);
     assert(retc == 0);
-    (void) retc;
+    (void)retc;
     GPIO_setConfig(Board_GPIO_RLED, GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_HIGH |
-    GPIO_CFG_OUT_LOW);
+                                       GPIO_CFG_OUT_LOW);
 }
+
 
 /**
  *  Temp Sensor processing thread.
@@ -757,7 +758,7 @@ void *TempSensor_task(void *arg0)
     /* Try to bring up the network using the current dataset */
     OtStack_setupInterfaceAndNetwork();
 
-    DISPUTILS_SERIALPRINTF(0, 0, "EVAQ-BEAM initialized!");
+    DISPUTILS_SERIALPRINTF(0, 0, "Temperature Sensor init!");
 
 #if !TIOP_CONFIG_SET_NW_ID
     OtRtosApi_lock();
@@ -772,28 +773,25 @@ void *TempSensor_task(void *arg0)
         OtRtosApi_unlock();
 
         DISPUTILS_SERIALPRINTF(2, 0, "pskd: %s", TIOP_CONFIG_PSKD);
-        DISPUTILS_SERIALPRINTF(3, 0,
-                               "EUI64: 0x%02x%02x%02x%02x%02x%02x%02x%02x",
-                               extAddress.m8[0], extAddress.m8[1],
-                               extAddress.m8[2], extAddress.m8[3],
-                               extAddress.m8[4], extAddress.m8[5],
+        DISPUTILS_SERIALPRINTF(3, 0, "EUI64: 0x%02x%02x%02x%02x%02x%02x%02x%02x",
+                               extAddress.m8[0], extAddress.m8[1], extAddress.m8[2],
+                               extAddress.m8[3], extAddress.m8[4], extAddress.m8[5],
                                extAddress.m8[6], extAddress.m8[7]);
     }
 #endif /* !TIOP_CONFIG_SET_NW_ID */
 
     OtRtosApi_lock();
-    otIp6AddressFromString(TIOP_TEMPSENSOR_REPORTING_ADDRESS,
-                           &thermostatAddress);
+    otIp6AddressFromString(TIOP_TEMPSENSOR_REPORTING_ADDRESS, &thermostatAddress);
     OtRtosApi_unlock();
 
     configureReportingTimer();
 
     memset(&cli_icmpHandler, sizeof(cli_icmpHandler), 0U);
-    cli_icmpHandler.mReceiveCallback = cli_icmp6RxCallback;
+       cli_icmpHandler.mReceiveCallback = cli_icmp6RxCallback;
 
-    OtRtosApi_lock();
-    otIcmp6RegisterHandler(instance, &cli_icmpHandler);
-    OtRtosApi_unlock();
+       OtRtosApi_lock();
+       otIcmp6RegisterHandler(instance, &cli_icmpHandler);
+       OtRtosApi_unlock();
 
     /* process events */
     while (true)
