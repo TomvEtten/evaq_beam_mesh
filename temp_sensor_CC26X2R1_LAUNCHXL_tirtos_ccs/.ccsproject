@@ -13,6 +13,6 @@
 	<ignoreDefaultDeviceSettings value="true"/>
 	<ignoreDefaultCCSSettings value="true"/>
 	<templateProperties value="id=temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs.projectspec.temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs,type=rtsc,xdcToolsVersion=3_51_01_18_core,target=ti.targets.arm.elf.M4F,platform=ti.platforms.simplelink:CC2652R1F,buildProfile=release,isHybrid=true,configuroOptions= --compileOptions &quot;${COMPILER_FLAGS} &quot;"/>
-	<origin value="/Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/examples/rtos/CC26X2R1_LAUNCHXL/thread/temp_sensor/tirtos/ccs/temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs.projectspec"/>
+	<origin value="C:\ti\simplelink_cc13x2_26x2_sdk_2_40_00_81\examples\rtos\CC26X2R1_LAUNCHXL\thread\temp_sensor\tirtos\ccs\temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs.projectspec"/>
 	<filesToOpen value=""/>
 </projectOptions>

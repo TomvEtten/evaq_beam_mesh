@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
+SHELL = cmd.exe
+
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../platform/crypto/aes_alt.c \
@@ -22,16 +24,16 @@ OBJS += \
 ./platform/crypto/sha256_alt.obj 
 
 OBJS__QUOTED += \
-"platform/crypto/aes_alt.obj" \
-"platform/crypto/crypto_misc.obj" \
-"platform/crypto/ecjpake_alt.obj" \
-"platform/crypto/sha256_alt.obj" 
+"platform\crypto\aes_alt.obj" \
+"platform\crypto\crypto_misc.obj" \
+"platform\crypto\ecjpake_alt.obj" \
+"platform\crypto\sha256_alt.obj" 
 
 C_DEPS__QUOTED += \
-"platform/crypto/aes_alt.d" \
-"platform/crypto/crypto_misc.d" \
-"platform/crypto/ecjpake_alt.d" \
-"platform/crypto/sha256_alt.d" 
+"platform\crypto\aes_alt.d" \
+"platform\crypto\crypto_misc.d" \
+"platform\crypto\ecjpake_alt.d" \
+"platform\crypto\sha256_alt.d" 
 
 C_SRCS__QUOTED += \
 "../platform/crypto/aes_alt.c" \

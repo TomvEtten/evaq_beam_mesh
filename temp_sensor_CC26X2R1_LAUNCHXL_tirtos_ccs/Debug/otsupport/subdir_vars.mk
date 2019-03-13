@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
+SHELL = cmd.exe
+
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../otsupport/otrtosapi.c 
@@ -13,10 +15,10 @@ OBJS += \
 ./otsupport/otrtosapi.obj 
 
 OBJS__QUOTED += \
-"otsupport/otrtosapi.obj" 
+"otsupport\otrtosapi.obj" 
 
 C_DEPS__QUOTED += \
-"otsupport/otrtosapi.d" 
+"otsupport\otrtosapi.d" 
 
 C_SRCS__QUOTED += \
 "../otsupport/otrtosapi.c" 

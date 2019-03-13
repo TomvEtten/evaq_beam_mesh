@@ -2,7 +2,9 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-CG_TOOL_ROOT := /home/tomvanetten/Programs/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS
+SHELL = cmd.exe
+
+CG_TOOL_ROOT := C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS
 
 GEN_OPTS__FLAG := --cmd_file="configPkg/compiler.opt"
 GEN_CMDS__FLAG := -l"configPkg/linker.cmd"
@@ -51,8 +53,8 @@ $(GEN_CMDS__FLAG) \
 
 -include ../makefile.init
 
-RM := rm -rf
-RMDIR := rm -rf
+RM := DEL /F
+RMDIR := RMDIR /S/Q
 
 # All of the sources participating in the build are defined here
 -include sources.mk
@@ -179,35 +181,41 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@$(MAKE) --no-print-directory -Onone "temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs.out"
 
 dependents:
-	-cd /home/tomvanetten/Documents/Workspace/evaq_beam_mesh/libmbedcrypto_CC26X2R1_LAUNCHXL_ccs/OptimizeSize && $(MAKE) clean all
+	-cd C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libopenthread_diag_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize && $(MAKE) clean all
+	-cd C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libopenthread_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize && $(MAKE) clean all
+	-cd C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libopenthread_platform_utils_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize && $(MAKE) clean all
+	-cd C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libmbedcrypto_CC26X2R1_LAUNCHXL_ccs/OptimizeSize && $(MAKE) clean all
 
 # Tool invocations
-temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) /home/tomvanetten/Documents/Workspace/evaq_beam_mesh/libmbedcrypto_CC26X2R1_LAUNCHXL_ccs/OptimizeSize/libmbedcrypto.lib
+temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libopenthread_diag_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize/libopenthread_diag_mtd.lib C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libopenthread_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize/libopenthread_mtd.lib C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libopenthread_platform_utils_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize/libopenthread_platform_utils_mtd.lib C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libmbedcrypto_CC26X2R1_LAUNCHXL_ccs/OptimizeSize/libmbedcrypto.lib
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
-	"/home/tomvanetten/Programs/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O4 --opt_for_speed=0 --define=OPENTHREAD_CONFIG_FILE='"openthread-config-cc2652-ccs-mtd.h"' --define=OPENTHREAD_PROJECT_CORE_CONFIG_FILE='"openthread-core-cc2652-config-ide.h"' --define=MBEDTLS_CONFIG_FILE='"mbedtls-config-cc2652-ccs.h"' --define=HAVE_CONFIG_H --define=SIMPLELINK_OPENTHREAD_SDK_BUILD=1 --define=SIMPLELINK_OPENTHREAD_CONFIG_MTD=1 --define=SIMPLELINK_OPENTHREAD_CONFIG_CC2652=1 --define=BOARD_DISPLAY_USE_LCD=0 --define=Board_EXCLUDE_NVS_EXTERNAL_FLASH --define=NDEBUG --define=OT_STACK_IID_ADDRESS_LSB=9 --define=DeviceFamily_CC26X2 -g --c99 --gcc --printf_support=nofloat --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --gen_data_subsections=on --abi=eabi -z -m"temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs.map" --heap_size=0 -i"/home/tomvanetten/Documents/Workspace/evaq_beam_mesh/libopenthread_diag_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize" -i"/home/tomvanetten/Documents/Workspace/evaq_beam_mesh/libopenthread_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize" -i"/home/tomvanetten/Documents/Workspace/evaq_beam_mesh/libopenthread_platform_utils_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize" -i"/home/tomvanetten/Documents/Workspace/evaq_beam_mesh/libmbedcrypto_CC26X2R1_LAUNCHXL_ccs/OptimizeSize" -i"/home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/source" -i"/home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages" -i"/home/tomvanetten/Programs/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/lib" --diag_wrap=off --display_error_number --warn_sections --xml_link_info="temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs_linkInfo.xml" --rom_model --unused_section_elimination=on -o "temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O4 --opt_for_speed=0 --define=OPENTHREAD_CONFIG_FILE='"openthread-config-cc2652-ccs-mtd.h"' --define=OPENTHREAD_PROJECT_CORE_CONFIG_FILE='"openthread-core-cc2652-config-ide.h"' --define=MBEDTLS_CONFIG_FILE='"mbedtls-config-cc2652-ccs.h"' --define=HAVE_CONFIG_H --define=SIMPLELINK_OPENTHREAD_SDK_BUILD=1 --define=SIMPLELINK_OPENTHREAD_CONFIG_MTD=1 --define=SIMPLELINK_OPENTHREAD_CONFIG_CC2652=1 --define=BOARD_DISPLAY_USE_LCD=0 --define=Board_EXCLUDE_NVS_EXTERNAL_FLASH --define=NDEBUG --define=OT_STACK_IID_ADDRESS_LSB=9 --define=DeviceFamily_CC26X2 -g --c99 --gcc --printf_support=nofloat --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --gen_data_subsections=on --abi=eabi -z -m"temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs.map" --heap_size=0 -i"C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libopenthread_diag_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize" -i"C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libopenthread_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize" -i"C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libopenthread_platform_utils_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize" -i"C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libmbedcrypto_CC26X2R1_LAUNCHXL_ccs/OptimizeSize" -i"C:/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/source" -i"C:/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/lib" --diag_wrap=off --display_error_number --warn_sections --xml_link_info="temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs_linkInfo.xml" --rom_model --unused_section_elimination=on -o "temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: ARM Hex Utility'
-	"/home/tomvanetten/Programs/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/bin/armhex"  -o "temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS/bin/armhex"  -o "temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "CC26X2R1_LAUNCHXL.obj" "CC26X2R1_LAUNCHXL_fxns.obj" "ccfg.obj" "disp_utils.obj" "keys_utils.obj" "main.obj" "otstack.obj" "tempsensor.obj" "tiop_config.obj" "otsupport/otrtosapi.obj" "platform/alarm.obj" "platform/alarm_micro.obj" "platform/debug_uart.obj" "platform/diag.obj" "platform/misc.obj" "platform/platform.obj" "platform/radio.obj" "platform/random.obj" "platform/uart.obj" "platform/crypto/aes_alt.obj" "platform/crypto/crypto_misc.obj" "platform/crypto/ecjpake_alt.obj" "platform/crypto/sha256_alt.obj" "platform/nv/crc.obj" "platform/nv/nvoctp.obj" "platform/nv/settings.obj" 
-	-$(RM) "CC26X2R1_LAUNCHXL.d" "CC26X2R1_LAUNCHXL_fxns.d" "ccfg.d" "disp_utils.d" "keys_utils.d" "main.d" "otstack.d" "tempsensor.d" "tiop_config.d" "otsupport/otrtosapi.d" "platform/alarm.d" "platform/alarm_micro.d" "platform/debug_uart.d" "platform/diag.d" "platform/misc.d" "platform/platform.d" "platform/radio.d" "platform/random.d" "platform/uart.d" "platform/crypto/aes_alt.d" "platform/crypto/crypto_misc.d" "platform/crypto/ecjpake_alt.d" "platform/crypto/sha256_alt.d" "platform/nv/crc.d" "platform/nv/nvoctp.d" "platform/nv/settings.d" 
+	-$(RM) "CC26X2R1_LAUNCHXL.obj" "CC26X2R1_LAUNCHXL_fxns.obj" "ccfg.obj" "disp_utils.obj" "keys_utils.obj" "main.obj" "otstack.obj" "tempsensor.obj" "tiop_config.obj" "otsupport\otrtosapi.obj" "platform\alarm.obj" "platform\alarm_micro.obj" "platform\debug_uart.obj" "platform\diag.obj" "platform\misc.obj" "platform\platform.obj" "platform\radio.obj" "platform\random.obj" "platform\uart.obj" "platform\crypto\aes_alt.obj" "platform\crypto\crypto_misc.obj" "platform\crypto\ecjpake_alt.obj" "platform\crypto\sha256_alt.obj" "platform\nv\crc.obj" "platform\nv\nvoctp.obj" "platform\nv\settings.obj" 
+	-$(RM) "CC26X2R1_LAUNCHXL.d" "CC26X2R1_LAUNCHXL_fxns.d" "ccfg.d" "disp_utils.d" "keys_utils.d" "main.d" "otstack.d" "tempsensor.d" "tiop_config.d" "otsupport\otrtosapi.d" "platform\alarm.d" "platform\alarm_micro.d" "platform\debug_uart.d" "platform\diag.d" "platform\misc.d" "platform\platform.d" "platform\radio.d" "platform\random.d" "platform\uart.d" "platform\crypto\aes_alt.d" "platform\crypto\crypto_misc.d" "platform\crypto\ecjpake_alt.d" "platform\crypto\sha256_alt.d" "platform\nv\crc.d" "platform\nv\nvoctp.d" "platform\nv\settings.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '
 
 .PHONY: all clean dependents
 .SECONDARY:
-/home/tomvanetten/Documents/Workspace/evaq_beam_mesh/libmbedcrypto_CC26X2R1_LAUNCHXL_ccs/OptimizeSize/libmbedcrypto.lib:
+C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libopenthread_diag_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize/libopenthread_diag_mtd.lib:
+C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libopenthread_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize/libopenthread_mtd.lib:
+C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libopenthread_platform_utils_mtd_CC26X2R1_LAUNCHXL_ccs/OptimizeSize/libopenthread_platform_utils_mtd.lib:
+C:/Users/Ralph/Documents/school/jaar3/SPECIFIEK/PROJECT/evaq-beam-coap-transceiver/evaq_beam_mesh/libmbedcrypto_CC26X2R1_LAUNCHXL_ccs/OptimizeSize/libmbedcrypto.lib:
 
 -include ../makefile.targets
 

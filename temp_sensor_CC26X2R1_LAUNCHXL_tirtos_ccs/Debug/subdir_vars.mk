@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
+SHELL = cmd.exe
+
 # Add inputs and outputs from these tool invocations to the build variables 
 CFG_SRCS += \
 ../release.cfg 
@@ -56,7 +58,7 @@ OBJS += \
 ./tiop_config.obj 
 
 GEN_MISC_DIRS__QUOTED += \
-"configPkg/" 
+"configPkg\" 
 
 OBJS__QUOTED += \
 "CC26X2R1_LAUNCHXL.obj" \
@@ -81,8 +83,8 @@ C_DEPS__QUOTED += \
 "tiop_config.d" 
 
 GEN_FILES__QUOTED += \
-"configPkg/linker.cmd" \
-"configPkg/compiler.opt" 
+"configPkg\linker.cmd" \
+"configPkg\compiler.opt" 
 
 C_SRCS__QUOTED += \
 "../CC26X2R1_LAUNCHXL.c" \

@@ -76,8 +76,7 @@ typedef enum
     TempSensor_evtKeyRight             = Event_Id_03, /* Right key is pressed */
     TempSensor_evtNwkJoined            = Event_Id_04, /* Joined the network */
     TempSensor_evtNwkJoinFailure       = Event_Id_05, /* Failed joining network */
-    TempSensor_evtNotifyGlobalAddress  = Event_Id_06, /* Register reporting address */
-    TempSensor_evtKeyLeft              = Event_Id_07  /* Left key is pressed */
+    TempSensor_evtNotifyGlobalAddress  = Event_Id_06  /* Register reporting address */
 } TempSensor_evt;
 
 /******************************************************************************

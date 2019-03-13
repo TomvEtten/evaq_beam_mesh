@@ -18,5 +18,6 @@ libopenthread_platform_utils_ftd_CC26X2R1_LAUNCHXL_ccs
 .jx-browser-data
 .jxbrowser-data
 temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs/Debug
-temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs/.Settings
 temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs/.launches
+temp_sensor_CC26X2R1_LAUNCHXL_tirtos_ccs/.config
+.xdchelp
