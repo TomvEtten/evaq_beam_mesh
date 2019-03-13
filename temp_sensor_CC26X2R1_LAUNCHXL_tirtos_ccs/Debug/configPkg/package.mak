@@ -15,90 +15,90 @@ XDCCFGDIR = package/cfg/
 # in the event that some included BOM script changes.
 #
 ifneq (clean,$(MAKECMDGOALS))
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/utils.js:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/utils.js
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/xdc.tci:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/xdc.tci
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/template.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/template.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/om2.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/om2.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/xmlgen.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/xmlgen.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/xmlgen2.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/xmlgen2.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/Warnings.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/Warnings.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/IPackage.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/IPackage.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/package.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/package.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/services/global/Clock.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/services/global/Clock.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/services/global/Trace.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/services/global/Trace.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/bld.js:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/bld.js
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/BuildEnvironment.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/BuildEnvironment.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/PackageContents.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/PackageContents.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/_gen.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/_gen.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Library.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Library.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Executable.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Executable.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Repository.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Repository.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Configuration.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Configuration.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Script.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Script.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Manifest.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Manifest.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Utils.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Utils.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITarget.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITarget.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITarget2.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITarget2.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITarget3.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITarget3.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITargetFilter.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITargetFilter.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/package.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/bld/package.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/utils.js:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/utils.js
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/xdc.tci:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/xdc.tci
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/template.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/template.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/om2.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/om2.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/xmlgen.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/xmlgen.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/xmlgen2.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/xmlgen2.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/Warnings.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/Warnings.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/IPackage.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/IPackage.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/package.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/package.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/services/global/Clock.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/services/global/Clock.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/services/global/Trace.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/services/global/Trace.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/bld.js:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/bld.js
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/BuildEnvironment.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/BuildEnvironment.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/PackageContents.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/PackageContents.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/_gen.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/_gen.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Library.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Library.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Executable.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Executable.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Repository.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Repository.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Configuration.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Configuration.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Script.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Script.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Manifest.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Manifest.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Utils.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/Utils.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITarget.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITarget.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITarget2.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITarget2.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITarget3.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITarget3.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITargetFilter.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/ITargetFilter.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/package.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/bld/package.xs
 package.mak: config.bld
-/home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/ITarget.xs:
-package.mak: /home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/ITarget.xs
-/home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/C28_large.xs:
-package.mak: /home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/C28_large.xs
-/home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/C28_float.xs:
-package.mak: /home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/C28_float.xs
-/home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/package.xs:
-package.mak: /home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/package.xs
-/home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/arm/elf/IArm.xs:
-package.mak: /home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/arm/elf/IArm.xs
-/home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/arm/elf/package.xs:
-package.mak: /home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/arm/elf/package.xs
+/Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/ITarget.xs:
+package.mak: /Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/ITarget.xs
+/Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/C28_large.xs:
+package.mak: /Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/C28_large.xs
+/Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/C28_float.xs:
+package.mak: /Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/C28_float.xs
+/Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/package.xs:
+package.mak: /Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/package.xs
+/Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/arm/elf/IArm.xs:
+package.mak: /Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/arm/elf/IArm.xs
+/Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/arm/elf/package.xs:
+package.mak: /Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/arm/elf/package.xs
 package.mak: package.bld
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/compiler.opt.xdt:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/compiler.opt.xdt
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/services/io/File.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/services/io/File.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/services/io/package.xs:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/services/io/package.xs
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/compiler.defs.xdt:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/compiler.defs.xdt
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/custom.mak.exe.xdt:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/custom.mak.exe.xdt
-/home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/package.xs.xdt:
-package.mak: /home/tomvanetten/Programs/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/package.xs.xdt
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/compiler.opt.xdt:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/compiler.opt.xdt
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/services/io/File.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/services/io/File.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/services/io/package.xs:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/services/io/package.xs
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/compiler.defs.xdt:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/compiler.defs.xdt
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/custom.mak.exe.xdt:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/custom.mak.exe.xdt
+/Applications/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/package.xs.xdt:
+package.mak: /Applications/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/package.xs.xdt
 endif
 
-ti.targets.arm.elf.M4F.rootDir ?= /home/tomvanetten/Programs/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS
-ti.targets.arm.elf.packageBase ?= /home/tomvanetten/Programs/ti/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/arm/elf/
+ti.targets.arm.elf.M4F.rootDir ?= /Applications/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.4.LTS
+ti.targets.arm.elf.packageBase ?= /Applications/ti/simplelink_cc13x2_26x2_sdk_2_40_00_81/kernel/tirtos/packages/ti/targets/arm/elf/
 .PRECIOUS: $(XDCCFGDIR)/%.oem4f
 .PHONY: all,em4f .dlls,em4f .executables,em4f test,em4f
 all,em4f: .executables,em4f

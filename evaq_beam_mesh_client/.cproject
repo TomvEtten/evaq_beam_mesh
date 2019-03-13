@@ -52,7 +52,7 @@
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_CC13X2_26X2_SDK_INSTALL_DIR}/source/third_party/openthread/src/core"/>
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_CC13X2_26X2_SDK_INSTALL_DIR}/source/third_party/openthread/src/cli"/>
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_CC13X2_26X2_SDK_INSTALL_DIR}/source/third_party/openthread/third_party/mbedtls/repo/include"/>
-									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/../libmbedcrypto_CC26X2R1_LAUNCHXL_ccs"/>
+									<listOptionValue builtIn="false" value="${ORIGINAL_PROJECT_ROOT}/../libmbedcrypto_CC26X2R1_LAUNCHXL_ccs"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/platform/crypto"/>
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_CC13X2_26X2_SDK_INSTALL_DIR}/source/ti/posix/ccs"/>
 									<listOptionValue builtIn="false" value="${CG_TOOL_ROOT}/include"/>
@@ -204,7 +204,7 @@
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_CC13X2_26X2_SDK_INSTALL_DIR}/source/third_party/openthread/src/core"/>
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_CC13X2_26X2_SDK_INSTALL_DIR}/source/third_party/openthread/src/cli"/>
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_CC13X2_26X2_SDK_INSTALL_DIR}/source/third_party/openthread/third_party/mbedtls/repo/include"/>
-									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/../libmbedcrypto_CC26X2R1_LAUNCHXL_ccs"/>
+									<listOptionValue builtIn="false" value="${ORIGINAL_PROJECT_ROOT}/../libmbedcrypto_CC26X2R1_LAUNCHXL_ccs"/>
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}/platform/crypto"/>
 									<listOptionValue builtIn="false" value="${COM_TI_SIMPLELINK_CC13X2_26X2_SDK_INSTALL_DIR}/source/ti/posix/ccs"/>
 									<listOptionValue builtIn="false" value="${CG_TOOL_ROOT}/include"/>
