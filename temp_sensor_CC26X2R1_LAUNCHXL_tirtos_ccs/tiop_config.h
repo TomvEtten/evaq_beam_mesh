@@ -81,7 +81,7 @@
  * Pre-Shared Key (PSKd) for joiner devices
  */
 #ifndef TIOP_CONFIG_PSKD
-#define TIOP_CONFIG_PSKD           "TMPSENS1"
+#define TIOP_CONFIG_PSKD           "EVAQ"
 #endif
 
 /*
@@ -107,37 +107,37 @@
  * when setting these parameters via the commissioning process.
  */
 #ifndef TIOP_CONFIG_SET_NW_ID
-#define TIOP_CONFIG_SET_NW_ID      0
+#define TIOP_CONFIG_SET_NW_ID      1
 #endif
 
 /*
  * IEEE 802.15.4 PAN ID
  */
 #ifndef TIOP_CONFIG_PAN_ID
-#define TIOP_CONFIG_PAN_ID         0x1234
+#define TIOP_CONFIG_PAN_ID         0x1337
 #endif
 
 /*
  * Thread Extended PAN ID
  */
 #ifndef TIOP_CONFIG_EXT_PAN_ID
-#define TIOP_CONFIG_EXT_PAN_ID     0x1111111122222222
+#define TIOP_CONFIG_EXT_PAN_ID     0x1234567812345678
 #endif
 
 /*
  * Thread Master Key (split into upper and lower 8 bytes)
  */
 #ifndef TIOP_CONFIG_MASTER_KEY_U
-#define TIOP_CONFIG_MASTER_KEY_U   0x0011223344556677
+#define TIOP_CONFIG_MASTER_KEY_U   0x1337133713371337
 #endif
 #ifndef TIOP_CONFIG_MASTER_KEY_L
-#define TIOP_CONFIG_MASTER_KEY_L   0x8899aabbccddeeff
+#define TIOP_CONFIG_MASTER_KEY_L   0x1337133713371337
 #endif
 
 /*
  * Network Name
  */
-#define TIOP_CONFIG_NETWORK_NAME   "OpenThreadDemo"
+#define TIOP_CONFIG_NETWORK_NAME   "EvaqDemo"
 
 /*
  * @brief Wrapper function around otJoinerStart for joining the network with the
