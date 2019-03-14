@@ -81,7 +81,7 @@
  * Pre-Shared Key (PSKd) for joiner devices
  */
 #ifndef TIOP_CONFIG_PSKD
-#define TIOP_CONFIG_PSKD           "EVAQ"
+#define TIOP_CONFIG_PSKD           "1337EVAQ"
 #endif
 
 /*
@@ -107,7 +107,7 @@
  * when setting these parameters via the commissioning process.
  */
 #ifndef TIOP_CONFIG_SET_NW_ID
-#define TIOP_CONFIG_SET_NW_ID      1
+#define TIOP_CONFIG_SET_NW_ID      0
 #endif
 
 /*
