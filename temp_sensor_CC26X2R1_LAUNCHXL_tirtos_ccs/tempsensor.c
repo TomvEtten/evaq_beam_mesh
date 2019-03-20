@@ -610,7 +610,8 @@ static int processEvents(void)
 
     if (events & TempSensor_evtNwkJoinFailure)
     {
-        DISPUTILS_SERIALPRINTF(1, 0, "Join Failure");
+        DISPUTILS_SERIALPRINTF(1, 0, "Join Failure, retrying..");
+        OtStack_joinConfiguredNetwork();
     }
 
     if(events & TempSensor_evtAddressValid)
@@ -777,6 +778,7 @@ void *TempSensor_task(void *arg0)
                                extAddress.m8[0], extAddress.m8[1], extAddress.m8[2],
                                extAddress.m8[3], extAddress.m8[4], extAddress.m8[5],
                                extAddress.m8[6], extAddress.m8[7]);
+        OtStack_joinConfiguredNetwork();
     }
 #endif /* !TIOP_CONFIG_SET_NW_ID */
 
