@@ -73,7 +73,7 @@
 #include <openthread/platform/settings.h>
 #include <openthread/tasklet.h>
 #include <openthread/thread.h>
-
+#include <openthread/ip6.h>
 /* OpenThread Internal/Example Header files */
 #include "otsupport/otinstance.h"
 #include "otsupport/otrtosapi.h"
@@ -127,29 +127,7 @@ static volatile uint8_t otStackEvents = OT_STACK_EVENT_NWK_NOT_JOINED;
  Local Functions
  *****************************************************************************/
 
-/**
- * @brief Creates the interface identifier.
- *
- * @param aInstance A pointer to the context information.
- * @param aAddress  A pointer to structure containing IPv6
- *                  address for which IID is being created.
- * @param aContext  A pointer to creator-specific context.
- *
- * @return OT_ERROR_NONE
- */
-static otError createIid(otInstance *aInstance, otNetifAddress *aAddress, void *aContext)
-{
-    (void) aInstance;
-    (void) aContext;
 
-    aAddress->mAddress.mFields.m8[OT_IP6_ADDRESS_SIZE - 1] =
-        OT_STACK_IID_ADDRESS_LSB;
-
-    otStackEvents = OT_STACK_EVENT_NOTIFY_GLOBAL_ADDRESS;
-    appEventHandler(otStackEvents, (void *) &(aAddress->mAddress));
-
-    return OT_ERROR_NONE;
-}
 
 /**
  * @brief callback function registered with the OpenThread to
@@ -192,7 +170,7 @@ void handleNetifStateChanged(uint32_t aFlags, void *aContext)
     {
         otIp6SlaacUpdate(aInstance, addresses,
                          sizeof(addresses) / sizeof(addresses[0]),
-                         createIid, NULL);
+                         otIp6CreateMacIid, NULL);
 
         /* post the network setup done event to the resgistered app */
         otStackEvents = OT_STACK_EVENT_NWK_DATA_CHANGED;

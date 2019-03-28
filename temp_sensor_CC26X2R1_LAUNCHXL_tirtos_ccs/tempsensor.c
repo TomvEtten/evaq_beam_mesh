@@ -123,7 +123,7 @@
 
 /* Address to report temperature */
 #ifndef TIOP_TEMPSENSOR_REPORTING_ADDRESS
-#define TIOP_TEMPSENSOR_REPORTING_ADDRESS  "ff02::1"
+#define TIOP_TEMPSENSOR_REPORTING_ADDRESS  "ff03::1"
 #define TIOP_OWN_REPORTING_ADDRESS "64:ff9b::8e5d:886d"
 #endif
 
@@ -425,14 +425,26 @@ static void coapHandleServer(void *aContext, otCoapHeader *aHeader,
                          otCoapHeaderGetTokenLength(aHeader));
     otCoapHeaderSetPayloadMarker(&responseHeader);
 
+    otExtAddress extAddress;
+
+           OtRtosApi_lock();
+           otLinkGetFactoryAssignedIeeeEui64(OtInstance_get(), &extAddress);
+           OtRtosApi_unlock();
+
+           DISPUTILS_SERIALPRINTF(2, 0, "pskd: %s", TIOP_CONFIG_PSKD);
+           DISPUTILS_SERIALPRINTF(3, 0, "EUI64: 0x%02x%02x%02x%02x%02x%02x%02x%02x",
+                                  extAddress.m8[0], extAddress.m8[1], extAddress.m8[2],
+                                  extAddress.m8[3], extAddress.m8[4], extAddress.m8[5],
+                                  extAddress.m8[6], extAddress.m8[7]);
+
     if(OT_COAP_CODE_GET == messageCode)
     {
         responseMessage = otCoapNewMessage((otInstance*)aContext,
                                            &responseHeader);
 
         otEXPECT_ACTION(responseMessage != NULL, error = OT_ERROR_NO_BUFS);
-        error = otMessageAppend(responseMessage, attrTemperature,
-                                strlen((const char*) attrTemperature));
+        error = otMessageAppend(responseMessage, extAddress.m8,
+                                8);
         otEXPECT(OT_ERROR_NONE == error);
 
         error = otCoapSendResponse((otInstance*)aContext, responseMessage,

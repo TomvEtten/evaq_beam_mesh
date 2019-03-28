@@ -57,9 +57,9 @@ extern "C"
  *****************************************************************************/
 
 /* Temperature sensor temperature string */
-#define TEMPSENSOR_TEMP_URI     "tempsensor/temperature"
+#define TEMPSENSOR_TEMP_URI     "evaq/id"
 
-#define THERMOSTAT_TEMP_URI     "thermostat/temperature"
+#define THERMOSTAT_TEMP_URI     "evaq/id"
 
 #ifndef THERMOSTAT_ADDRESS_LSB
 #define THERMOSTAT_ADDRESS_LSB  7
