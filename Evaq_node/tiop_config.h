@@ -53,21 +53,21 @@
  * MLE Link Mode R
  */
 #ifndef TIOP_CONFIG_LINK_MODE_R
-#define TIOP_CONFIG_LINK_MODE_R    0
+#define TIOP_CONFIG_LINK_MODE_R    1
 #endif
 
 /**
  * MLE Link Mode D
  */
 #ifndef TIOP_CONFIG_LINK_MODE_D
-#define TIOP_CONFIG_LINK_MODE_D    0
+#define TIOP_CONFIG_LINK_MODE_D    1
 #endif
 
 /**
  * Data poll period for Sleepy End Devices
  */
 #ifndef TIOP_CONFIG_POLL_PERIOD
-#define TIOP_CONFIG_POLL_PERIOD    2000
+#define TIOP_CONFIG_POLL_PERIOD    1000
 #endif
 
 /**
