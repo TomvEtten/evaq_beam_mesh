@@ -96,7 +96,7 @@ int main(void)
 
     SHA2_init();
 
-    TempSensor_taskCreate();
+    EVAQ_taskCreate();
 
     OtStack_taskCreate();
 

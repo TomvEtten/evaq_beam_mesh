@@ -1,6 +1,6 @@
 /******************************************************************************
 
- @file tempsensor.h
+ @file EVAQ.h
 
  @brief Temperature Sensor example application
 
@@ -44,8 +44,8 @@
  
  *****************************************************************************/
 
-#ifndef _TEMPSENSOR_H_
-#define _TEMPSENSOR_H_
+#ifndef _EVAQ_H_
+#define _EVAQ_H_
 
 #ifdef __cplusplus
 extern "C"
@@ -55,9 +55,10 @@ extern "C"
 /******************************************************************************
  Constants and definitions
  *****************************************************************************/
+#include <ti/sysbios/knl/Event.h>
 
 /* Temperature sensor temperature string */
-#define TEMPSENSOR_TEMP_URI     "evaq/id"
+#define EVAQ_TEMP_URI     "evaq/id"
 
 #define THERMOSTAT_TEMP_URI     "evaq/id"
 
@@ -70,15 +71,15 @@ extern "C"
  */
 typedef enum
 {
-    TempSensor_evtReportTemp           = Event_Id_00, /* report timeout event */
-    TempSensor_evtNwkSetup             = Event_Id_01, /* openthread network is setup */
-    TempSensor_evtAddressValid         = Event_Id_02, /* Global address registered, we may begin reporting */
-    TempSensor_evtKeyRight             = Event_Id_03, /* Right key is pressed */
-    TempSensor_evtNwkJoined            = Event_Id_04, /* Joined the network */
-    TempSensor_evtNwkJoinFailure       = Event_Id_05, /* Failed joining network */
-    TempSensor_evtNotifyGlobalAddress  = Event_Id_06, /* Register reporting address */
-    TempSensor_evtKeyLeft              = Event_Id_07  /* Left key is pressed */
-} TempSensor_evt;
+    evaq_evtReportTemp           = Event_Id_00, /* report timeout event */
+    evaq_evtNwkSetup             = Event_Id_01, /* openthread network is setup */
+    evaq_evtAddressValid         = Event_Id_02, /* Global address registered, we may begin reporting */
+    evaq_evtKeyRight             = Event_Id_03, /* Right key is pressed */
+    evaq_evtNwkJoined            = Event_Id_04, /* Joined the network */
+    evaq_evtNwkJoinFailure       = Event_Id_05, /* Failed joining network */
+    evaq_evtNotifyGlobalAddress  = Event_Id_06, /* Register reporting address */
+    evaq_evtKeyLeft              = Event_Id_07  /* Left key is pressed */
+} EVAQ_evt;
 
 /******************************************************************************
  External functions
@@ -90,11 +91,11 @@ typedef enum
  * @param event event to post.
  * @return None
  */
-extern void TempSensor_postEvt(TempSensor_evt event);
+extern void EVAQ_postEvt(EVAQ_evt event);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _TEMPSENSOR_H_ */
+#endif /* _EVAQ_H_ */
 

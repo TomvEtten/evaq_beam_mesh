@@ -72,15 +72,15 @@ extern "C"
 /**
  * Priority of the Application task.
  */
-#ifndef TASK_CONFIG_TEMPSENSOR_TASK_PRIORITY
-#define TASK_CONFIG_TEMPSENSOR_TASK_PRIORITY   2
+#ifndef TASK_CONFIG_EVAQ_TASK_PRIORITY
+#define TASK_CONFIG_EVAQ_TASK_PRIORITY   2
 #endif
 
 /**
  * Size of the cli task call stack.
  */
-#ifndef TASK_CONFIG_TEMPSENSOR_TASK_STACK_SIZE
-#define TASK_CONFIG_TEMPSENSOR_TASK_STACK_SIZE 2048
+#ifndef TASK_CONFIG_EVAQ_TASK_STACK_SIZE
+#define TASK_CONFIG_EVAQ_TASK_STACK_SIZE 2048
 #endif
 
 /******************************************************************************
@@ -95,7 +95,7 @@ extern void OtStack_taskCreate(void);
 /**
  * Creation funciton for the temperature sensor application task.
  */
-extern void TempSensor_taskCreate(void);
+extern void EVAQ_taskCreate(void);
 
 #ifdef __cplusplus
 }
